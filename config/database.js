@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/Twitter', {
+mongoose.connect('mongodb://localhost/banana', {
   useNewUrlParser: true,
   // useCreateIndex: true,
   useUnifiedTopology: true

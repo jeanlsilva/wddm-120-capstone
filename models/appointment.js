@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-const { Schema, ObjectID, String, Date } = mongoose;
-const userSchema = require('./user');
+const { Schema } = mongoose;
+const { userSchema } = require('./user');
 
 const appointmentSchema = new Schema({
-    id: ObjectID,
     provider_id: String,
     user: userSchema,
     date: Date,
