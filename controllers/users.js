@@ -1,4 +1,5 @@
 const { User } = require('../models/user');
+const { hash } = require('bcryptjs');
 
 function list(req, res) {
     try {
@@ -12,13 +13,29 @@ function list(req, res) {
 
 function create(req, res) {
     try {
-        const user = new User(req.body);
-        user.save((err) => {
-            if (err) {
-                return res.json(err)
+        const { name, email, password, avatar, is_provider } = req.body;
+        User.findOne({ email }, async function(err, userExists) {
+            if (userExists) {
+                //throw new Error('Email address already used')
+                return res.json({ error: 'Email address already used '});
             }
-            return res.json(user)
-        })        
+
+            const hashedPassword = await hash(password, 8);
+            console.log(hashedPassword)
+            const user = new User({
+                name,
+                email,
+                password: hashedPassword,
+                avatar,
+                isProvider: is_provider
+            });
+            user.save((err) => {
+                if (err) {
+                    return res.json(err)
+                }
+                return res.json(user)
+            })
+        })      
     } catch (err) {
         console.log(err)
         return res.json(err)
