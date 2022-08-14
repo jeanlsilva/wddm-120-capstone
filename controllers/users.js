@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const { User } = require('../models/user');
 
 function list(req, res) {
     try {
@@ -12,7 +12,6 @@ function list(req, res) {
 
 function create(req, res) {
     try {
-        console.log(req.body);
         const user = new User(req.body);
         user.save((err) => {
             if (err) {
@@ -21,6 +20,7 @@ function create(req, res) {
             return res.json(user)
         })        
     } catch (err) {
+        console.log(err)
         return res.json(err)
     }
 }
