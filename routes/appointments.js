@@ -5,4 +5,6 @@ const appointmentCtrl = require('../controllers/appointments');
 /* GET appointments listing. */
 router.get('/', appointmentCtrl.list);
 
+router.post('/', appointmentCtrl.create);
+
 module.exports = router;

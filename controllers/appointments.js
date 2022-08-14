@@ -1,4 +1,5 @@
 const Appointment = require('../models/appointment');
+const { User } = require('../models/user');
 
 function list(req, res) {
     try {
@@ -12,14 +13,21 @@ function list(req, res) {
 
 function create(req, res) {
     try {
-        const appointment = new Appointment(req.body);
-        console.log(appointment)
-        appointment.save((err) => {
-            if (err) {
-                return res.json(err)
-            }
-            return res.json(appointment)
-        })
+        User.findById(req.body.provider_id, function(err, user) {
+            console.log(user);
+            const appointment = new Appointment({
+                date: req.body.date,
+                provider_id: user._id,
+                user
+            });
+
+            appointment.save((err) => {
+                if (err) {
+                    return res.json(err)
+                }
+                return res.json(appointment)
+            })
+        });
     } catch (err) {
         res.json(err)
     }    
