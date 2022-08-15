@@ -6,9 +6,19 @@ function list(req, res) {
         User.find({}, function(err, user) {
             return res.json(user)
         })
-    } catch (err) {
-        return res.json(err)
+    } catch (error) {
+        return res.json({ error })
     }    
+}
+
+function listOne(req, res) {
+    try {
+        User.findById(req.params.id, function(err, user) {
+            return res.json(user);
+        })
+    } catch (err) {
+        return res.json({ error });
+    }
 }
 
 function create(req, res) {
@@ -44,5 +54,6 @@ function create(req, res) {
 
 module.exports = {
     list,
+    listOne,
     create
 }
