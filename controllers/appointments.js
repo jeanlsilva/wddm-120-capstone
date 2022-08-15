@@ -7,7 +7,7 @@ function list(req, res) {
             return res.json(appointment)
         })
     } catch (error) {
-        return res.status(400).json({ error })
+        return res.status(400).json({ message: error, success: false })
     }    
 }
 
@@ -17,7 +17,7 @@ function listOne(req, res) {
             return res.json(appointment);
         })
     } catch (error) {
-        return res.status(400).json({ error });
+        return res.status(400).json({ message: error, success: false });
     }
 }
 
@@ -25,7 +25,7 @@ function listByUser(req, res) {
     try {
         User.findById(req.params.id, function(err, user) {
             if (!user) {
-                return res.status(404).json({ error: "User does not exist" });
+                return res.status(404).json({ message: "User does not exist", success: false });
             }
 
             Appointment.find({ "user._id": req.params.id }, function(err, users) {
@@ -33,7 +33,7 @@ function listByUser(req, res) {
             })
         })        
     } catch (error) {
-        return res.status(400).json({ error });
+        return res.status(400).json({ message: error, success: false });
     }
 }
 
@@ -42,7 +42,7 @@ function create(req, res) {
         User.findById(req.body.user_id, function(err, user) {
             const appointment = new Appointment({
                 date: req.body.date,
-                provider_id: user._id,
+                provider_id: req.body.provider_id,
                 user
             });
 
@@ -54,7 +54,7 @@ function create(req, res) {
             })
         });
     } catch (error) {
-        res.status(400).json({ error })
+        res.status(400).json({ message: error, success: false })
     }    
 }
 
