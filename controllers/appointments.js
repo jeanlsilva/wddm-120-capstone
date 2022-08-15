@@ -58,9 +58,46 @@ function create(req, res) {
     }    
 }
 
+function update(req, res) {
+    try {
+        console.log(req.params)
+        Appointment.findByIdAndUpdate(req.params.id, req.body, function(err, { _doc }) {
+            if (err) {
+                return response.status(500).json({ message: err, success: false })
+            }
+
+            const modifiedValues = req.body;
+
+            return res.json({
+                ..._doc,
+                ...modifiedValues
+            })
+        })
+    } catch(error) {
+        console.log(error)
+        res.status(500).json({ message: error, success: false })
+    }
+}
+
+function deleteAppointment(req, res) {
+    try {
+        Appointment.findByIdAndDelete(req.params.id, function(err) {
+            if (err) {
+                return res.status(500).json({ message: err, success: false })
+            }
+
+            return res.json({ message: `Appointment ${req.params.id} successfully deleted`, success: true });
+        })
+    } catch(error) {
+        res.status(500).json({ message: error, success: false })
+    }
+}
+
 module.exports = {
     list,
     listOne,
     listByUser,
-    create
+    create,
+    update,
+    deleteAppointment
 }

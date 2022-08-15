@@ -11,4 +11,8 @@ router.get('/user/:id', appointmentCtrl.listByUser);
 
 router.post('/', appointmentCtrl.create);
 
+router.put('/:id', appointmentCtrl.update);
+
+router.delete('/:id', appointmentCtrl.deleteAppointment);
+
 module.exports = router;
