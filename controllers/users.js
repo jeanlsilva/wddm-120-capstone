@@ -22,6 +22,16 @@ function listOne(req, res) {
     }
 }
 
+function listProviders(req, res) {
+    try {
+        User.find({ isProvider: true }, function(err, users) {
+            return res.json(users);
+        })
+    } catch (err) {
+        return res.status(500).json({ message: error, success: false })
+    }
+}
+
 function create(req, res) {
     try {
         const { name, email, password, avatar, is_provider } = req.body;
@@ -31,7 +41,7 @@ function create(req, res) {
             }
 
             const hashedPassword = await hash(password, 8);
-            console.log(hashedPassword)
+            
             const user = new User({
                 name,
                 email,
@@ -100,6 +110,7 @@ function deleteUser(req, res) {
 module.exports = {
     list,
     listOne,
+    listProviders,
     create,
     update,
     deleteUser
