@@ -31,8 +31,12 @@ function listByUser(req, res) {
           .json({ message: 'User does not exist', success: false });
       }
 
+      const { year, month, day } = req.query;
+      const date = new Date(year, month, day);
+      const nextDate = new Date(year, month, day + 1);
+
       Appointment.find(
-        { 'user._id': req.params.id },
+        { 'user._id': req.params.id, date: { $gte: date, $lt: nextDate } },
         function (err, appointments) {
           return res.json(appointments);
         },
@@ -45,10 +49,9 @@ function listByUser(req, res) {
 
 function create(req, res) {
     try {
-      const date = zonedTimeToUtc(req.body.date, 'America/New_York')
       User.findById(req.body.user_id, function(err, user) {
         const appointment = new Appointment({
-            date,
+            date: req.body.date,
             provider_id: req.body.provider_id,
             user
         });
