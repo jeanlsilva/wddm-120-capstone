@@ -33,7 +33,7 @@ function listByUser(req, res) {
 
       const { year, month, day } = req.query;
       const date = new Date(year, month, day);
-      const nextDate = new Date(year, month, day + 1);
+      const nextDate = new Date(year, month, parseInt(day) + 1);
 
       Appointment.find(
         { 'user._id': req.params.id, date: { $gte: date, $lt: nextDate } },
