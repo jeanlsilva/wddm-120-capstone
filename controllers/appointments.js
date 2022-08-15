@@ -1,5 +1,6 @@
 const Appointment = require('../models/appointment');
 const { User } = require('../models/user');
+const { zonedTimeToUtc } = require('date-fns-tz');
 
 function list(req, res) {
     try {
@@ -39,9 +40,10 @@ function listByUser(req, res) {
 
 function create(req, res) {
     try {
+        const date = zonedTimeToUtc(req.body.date, 'America/New_York')
         User.findById(req.body.user_id, function(err, user) {
             const appointment = new Appointment({
-                date: req.body.date,
+                date,
                 provider_id: req.body.provider_id,
                 user
             });
