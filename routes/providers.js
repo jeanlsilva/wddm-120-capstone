@@ -4,3 +4,5 @@ const usersCtrl = require('../controllers/users');
 
 router.get('/', usersCtrl.listProviders);
 
+module.exports = router;
+
