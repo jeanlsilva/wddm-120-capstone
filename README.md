@@ -78,6 +78,11 @@ npm start
 yarn start
 ```
 
+## Next Steps
+
+[ ] Create Barber user vision
+[ ] Display only time slots available by Barber
+
 ## 📝 Team
 
 [Jean Campos](https://github.com/jeanffc)  
