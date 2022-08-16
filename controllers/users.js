@@ -62,13 +62,19 @@ function create(req, res) {
   }
 }
 
-function update(req, res) {
+async function update(req, res) {
   try {
+    const modifiedValues = req.body;
+
+    if (modifiedValues.password) {
+      const hashedPassword = await hash(modifiedValues.password, 8);
+      const modifiedValues = { ...modifiedValues, password: hashedPassword }
+    }
     User.findByIdAndUpdate(req.params.id, req.body, function (err, { _doc }) {
       if (err) {
         return res.status(500).json({ message: err, success: false });
       }
-      const modifiedValues = req.body;
+
       return res.json({
         ..._doc,
         ...modifiedValues,
