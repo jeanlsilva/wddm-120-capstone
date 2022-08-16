@@ -78,12 +78,32 @@ npm start
 yarn start
 ```
 
+## API Documentation
+
+API Documentation can be acessed through this [JSON file](https://github.com/jeanlsilva/wddm-120-capstone/blob/master/api-doc.json). The file can be imported through some API client like Imsomnia or Postman.
+
+- [Link to the deployed API](https://go-barber-app.herokuapp.com/)
+- [Link to Trello board](https://trello.com/invite/b/lmNICXwk/be01a5797c0eb30d1ce284a6f8722888/gobaber-app)
+- [Link to the wireframe](https://www.figma.com/file/oqEucAz5x7RkoyAQJlOS9d/GoBarber-App?node-id=34%3A1180)
+
 ## Next Steps
 
 [ ] Create Barber user vision
 [ ] Display only time slots available by Barber
+[ ] Upload profile image
+
+## Screenshots
+<div style="display: grid; grid-template-columns: repeat(3, 200px)">
+  <img src="https://res.cloudinary.com/ddp9mwd6e/image/upload/v1660616808/screenshot5_l8b0ak.png" alt="Login page" width="300" />
+  <img src="https://res.cloudinary.com/ddp9mwd6e/image/upload/v1660616955/screenshot6_tjd9wr.png" alt="Signup page" width="300" />
+  <img src="https://res.cloudinary.com/ddp9mwd6e/image/upload/v1660616808/screenshot3_c5ydgo.png" alt="Select barber" width="300" />
+  <img src="https://res.cloudinary.com/ddp9mwd6e/image/upload/v1660616808/screenshot4_rjg450.png" alt="Schedule appointments" width="300" />
+  <img src="https://res.cloudinary.com/ddp9mwd6e/image/upload/v1660616808/screenshot1_kiklnv.png" alt="View scheduled appointments" width="300" />
+  <img src="https://res.cloudinary.com/ddp9mwd6e/image/upload/v1660616808/screenshot2_mmdlzv.png" alt="Edit appointment" width="300" />
+  <img src="https://res.cloudinary.com/ddp9mwd6e/image/upload/v1660617172/screenshot7_vnr6wh.png" alt="Edit user profile" width="300" />
+</div>
 
 ## 📝 Team
 
-[Jean Campos](https://github.com/jeanffc)  
+[Jean Campos](https://github.com/jeanffc)
 [Jean Silva](https://github.com/jeanlsilva)
