@@ -60,7 +60,17 @@ npm i
 yarn
 ```
 
-2. Run project
+2. Rename `.env.sample` to `.env`
+
+3. Create a mongo Cluster and Database
+
+4. Edit `.env` with your own credentials
+
+```
+DB_URL="mongodb+srv://<USER>:<PASS>@<DB_HOST>/<DB_BASE>?retryWrites=true&w=majority"
+```
+
+5. Run project
 
 ```bash
 npm start
