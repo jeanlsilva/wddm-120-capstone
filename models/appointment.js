@@ -3,12 +3,12 @@ const { Schema } = mongoose;
 const { userSchema } = require('./user');
 
 const appointmentSchema = new Schema({
-    provider_id: String,
+    provider: userSchema,
     user: userSchema,
     date: Date,
 },
-{ 
-    timestamps: true 
+{
+    timestamps: true
 })
 
 module.exports = mongoose.model('Appointment', appointmentSchema);

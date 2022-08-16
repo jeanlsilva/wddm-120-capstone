@@ -50,20 +50,23 @@ function listByUser(req, res) {
 function create(req, res) {
   try {
     User.findById(req.body.user_id, function (err, user) {
-      const appointment = new Appointment({
-        date: req.body.date,
-        provider_id: req.body.provider_id,
-        user,
-      });
+      User.findById(req.body.provider_id, function(err, provider) {
+        const appointment = new Appointment({
+          date: req.body.date,
+          provider,
+          user,
+        });
 
-      appointment.save(err => {
-        if (err) {
-          return res.status(400).json({ error: err });
-        }
-        return res.json(appointment);
-      });
+        appointment.save(err => {
+          if (err) {
+            return res.status(400).json({ error: err });
+          }
+          return res.json(appointment);
+        });
+      })
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ message: error, success: false });
   }
 }
