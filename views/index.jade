@@ -1,5 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 GoBarber API index page
+  p
+    strong Routes:
+  p GET /users
+  p GET /users/:id
+  P POST /users
+  p PUT /users/:id
+  p DELETE /users/:id
+  br
+  p GET /appointments
+  p GET /appointments/:id
+  p POST /appointments
+  p PUT /appointments/:id
+  p DELETE /appointments/:id
+  br
+  p GET /providers
+  br
+  p POST /sessions
